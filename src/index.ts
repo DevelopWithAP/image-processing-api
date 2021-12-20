@@ -1,14 +1,13 @@
 import express from 'express';
+import routes from './routes';
 
-const app = express();
-const port = 5000;
+const app: express.Application = express();
+const PORT: number = 3000;
 
-app.get('/', (req: express.Request, res: express.Response)=> {
-    res.status(200).send('OK');
-});
+app.use(routes);
 
-app.listen(port, ()=> {
-    console.log(`listening on http://localhost:${port}/`);
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
 });
 
 export default app;
