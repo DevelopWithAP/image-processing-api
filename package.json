@@ -7,6 +7,7 @@
     "test": "npm run build && npm run jasmine",
     "build": "npx tsc",
     "jasmine": "jasmine",
+    "lint": "eslint --ext .ts",
     "start": "nodemon src/index.ts"
   },
   "keywords": [],
