@@ -1,5 +1,4 @@
 import express from 'express';
-import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
 import processImage from '../../../utilities/processImage';
@@ -14,10 +13,10 @@ images.get('/', async (req: express.Request, res: express.Response):Promise<void
     const width = Number(req.query.width);
 
     // absolute path to /images directory
-    const imgDir = path.resolve('./'+'/images');
+    const imagesDir = path.resolve('./'+'/images');
 
     // access filename
-    const imgName = `${imgDir}/${filename}`;
+    const imgName = `${imagesDir}/${filename}`;
     const imgNameStripped = String(filename?.toString().replace('.jpg', ''));
 
     const thumbsDir = path.resolve('./'+ 'thumbnails/');
@@ -28,10 +27,6 @@ images.get('/', async (req: express.Request, res: express.Response):Promise<void
     */ 
     const processedImg = `${thumbsDir}/${imgNameStripped}-${height}X${width}.jpg`;
 
-    // check if thumbnails directorty exists; create if not
-    if(!fs.existsSync(thumbsDir)) {
-        fs.mkdirSync(thumbsDir);
-    }
     // User must provide filename
     if (!filename) {
         res.send('Missing image filename');
@@ -45,6 +40,10 @@ images.get('/', async (req: express.Request, res: express.Response):Promise<void
         res.sendFile(imgName);
     }
     else {
+        // check if thumbnails directorty exists; create if not
+        if(!fs.existsSync(thumbsDir)) {
+        fs.mkdirSync(thumbsDir);
+        }
         // proceed with resizing
         await processImage(imgName, width, height, processedImg);
         res.sendFile(processedImg);
