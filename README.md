@@ -2,6 +2,7 @@
 ## How to begin:
 * Install Node.js locally and initialise a new project by running ```npm init --y```.
 ## How to compile:
+* Install Typescript and Express.js.
 * ```npm run build``` will perform the transpilation from TypeScript tp JavaScript.
 ## How to test:
 * ```npm run test``` will perform all the testing as well as producing a 'build' directory.
