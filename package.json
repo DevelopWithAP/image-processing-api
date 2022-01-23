@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "prettier": "prettier --config .prettierrc.json 'src' --write",
-    "start": "nodemon src/index.ts"
+    "start": "node build/src/index",
+    "start-dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",

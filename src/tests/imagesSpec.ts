@@ -27,15 +27,18 @@ describe('Testing API endpoint', () => {
   });
 });
 
-describe('Testing the image processing function', ()=> {
-  it('should produce a resized image', (done)=> {
+describe('Testing the image processing function', () => {
+  it('should produce a resized image', (done) => {
     const filename = 'encenadaport.jpg';
     const width = 400;
     const height = 400;
-    const testPath = `${path.resolve('./' + '/thumbnails')}/${filename.replace('.jpg', '')}-${height}X${width}.jpg`;
-    
-    const response = processImage(filename, width, height, testPath);
+    const testPath = `${path.resolve('./' + '/thumbnails')}/${filename.replace(
+      '.jpg',
+      ''
+    )}-${height}X${width}.jpg`;
+
+    processImage(filename, width, height, testPath);
     expect(fs.existsSync(testPath)).toBe(true);
     done();
   });
-})
+});
